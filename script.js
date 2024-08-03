@@ -78,7 +78,7 @@ const determineWinner = (human, cpu) => {
 const updateScores = () => {
   playerScoreElement.textContent = `Player Score: ${playerScore}`;
   cpuScoreElement.textContent = `CPU Score: ${cpuScore}`;
-  round++;
+  roundElement.textContent = `Round: ${round}`;
 };
 
 const playRound = async () => {
@@ -100,14 +100,16 @@ const playGame = async () => {
     } else if (result === 'Cpu') {
       cpuScore++;
     }
+    round++;
 
-    console.log(`Your Score: ${playerScore}`);
-    console.log(`Opponent Score:  ${cpuScore}`);
     updateScores();
+
     if (playerScore === 5) {
+      updateScores();
       console.log('You win!');
       break;
     } else if (cpuScore === 5) {
+      updateScores();
       console.log('You lose!');
       break;
     }
@@ -118,6 +120,7 @@ const playGame = async () => {
   if (playAgain) {
     playerScore = 0;
     cpuScore = 0;
+    round = 1;
     updateScores();
     playGame();
   } else {
