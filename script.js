@@ -1,67 +1,99 @@
-const playGame = () => {
-  const getComputerChoice = () => {
-    let num = Math.floor(Math.random() * (4 - 1) + 1);
+let playerScore = 0;
+let cpuScore = 0;
+let round = 1;
 
-    if (num === 1) {
-      return 'Melee';
-    } else if (num === 2) {
-      return 'Ranged';
-    } else {
-      return 'Magic';
-    }
-  };
+const playerScoreElement = document.getElementById('player-score');
+const cpuScoreElement = document.getElementById('cpu-score');
+const roundElement = document.getElementById('round');
+const playerSelectionElement = document.getElementById('player-selection');
+const cpuSelection = document.getElementById('cpu-selection');
 
-  const getHumanChoice = () => {
-    let choice = prompt('Melee, Ranged, or Magic?').toLowerCase();
+playerScoreElement.textContent = `Player Score: ${playerScore}`;
+cpuScoreElement.textContent = `Player Score: ${playerScore}`;
+roundElement.textContent = `Round: ${round}`;
 
-    if (choice === 'melee' || choice === 'ranged' || choice === 'magic') {
-      choice = choice[0].toUpperCase() + choice.slice(1);
-      return choice;
-    } else {
-      alert('Invalid choice, try again');
-      return getHumanChoice();
-    }
-  };
+const rangedButton = document.getElementById('ranged-button');
+const meleeButton = document.getElementById('melee-button');
+const magicButton = document.getElementById('magic-button');
 
-  const determineWinner = (human, cpu) => {
-    if (human === 'Melee' && cpu === 'Ranged') {
-      console.log('You win! Melee beats Ranged.');
-      return 'Player';
-    } else if (human === 'Melee' && cpu === 'Magic') {
-      console.log('You lose! Magic beats Melee.');
-      return 'Cpu';
-    } else if (human === 'Magic' && cpu === 'Ranged') {
-      console.log('You lose! Ranged beats Magic');
-      return 'Cpu';
-    } else if (human === 'Magic' && cpu === 'Melee') {
-      console.log('You win! Magic beats melee.');
-      return 'Player';
-    } else if (human === 'Ranged' && cpu === 'Melee') {
-      console.log('You lose! Melee beats ranged.');
-      return 'Cpu';
-    } else if (human === 'Ranged' && cpu === 'Magic') {
-      console.log('You win! Ranged beats magic.');
-      return 'Player';
-    } else {
-      console.log("It's a draw!");
-      return 'Draw';
-    }
-  };
+const getComputerChoice = () => {
+  let num = Math.floor(Math.random() * (4 - 1) + 1);
 
-  const playRound = () => {
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
+  if (num === 1) {
+    return 'Melee';
+  } else if (num === 2) {
+    return 'Ranged';
+  } else {
+    return 'Magic';
+  }
+};
 
-    console.log('Your attack: ', humanChoice);
-    console.log("Oponent's attack: ", computerChoice);
-    return determineWinner(humanChoice, computerChoice);
-  };
+const getHumanChoice = () => {
+  return new Promise((resolve) => {
+    const handleButtonClick = (choice) => {
+      rangedButton.removeEventListener('click', handleRangedClick);
+      meleeButton.removeEventListener('click', handleMeleeClick);
+      magicButton.removeEventListener('click', handleMagicClick);
+      resolve(choice);
+    };
 
-  let playerScore = 0;
-  let cpuScore = 0;
+    const handleRangedClick = () => handleButtonClick('Ranged');
+    const handleMeleeClick = () => handleButtonClick('Melee');
+    const handleMagicClick = () => handleButtonClick('Magic');
 
+    rangedButton.addEventListener('click', handleRangedClick);
+    meleeButton.addEventListener('click', handleMeleeClick);
+    magicButton.addEventListener('click', handleMagicClick);
+  });
+};
+
+const determineWinner = (human, cpu) => {
+  playerSelectionElement.textContent = `Your Attack: ${human}`;
+  cpuSelection.textContent = `Opponent's Attack: ${cpu}`;
+
+  if (human === 'Melee' && cpu === 'Ranged') {
+    console.log('You win! Melee beats Ranged.');
+    return 'Player';
+  } else if (human === 'Melee' && cpu === 'Magic') {
+    console.log('You lose! Magic beats Melee.');
+    return 'Cpu';
+  } else if (human === 'Magic' && cpu === 'Ranged') {
+    console.log('You lose! Ranged beats Magic');
+    return 'Cpu';
+  } else if (human === 'Magic' && cpu === 'Melee') {
+    console.log('You win! Magic beats melee.');
+    return 'Player';
+  } else if (human === 'Ranged' && cpu === 'Melee') {
+    console.log('You lose! Melee beats ranged.');
+    return 'Cpu';
+  } else if (human === 'Ranged' && cpu === 'Magic') {
+    console.log('You win! Ranged beats magic.');
+    return 'Player';
+  } else {
+    console.log("It's a draw!");
+    return 'Draw';
+  }
+};
+
+const updateScores = () => {
+  playerScoreElement.textContent = `Player Score: ${playerScore}`;
+  cpuScoreElement.textContent = `CPU Score: ${cpuScore}`;
+  round++;
+};
+
+const playRound = async () => {
+  let humanChoice = await getHumanChoice();
+  let computerChoice = getComputerChoice();
+
+  console.log('Your attack: ', humanChoice);
+  console.log("Oponent's attack: ", computerChoice);
+
+  return determineWinner(humanChoice, computerChoice);
+};
+
+const playGame = async () => {
   while (playerScore <= 5 || cpuScore <= 5) {
-    let result = playRound();
+    let result = await playRound();
 
     if (result === 'Player') {
       playerScore++;
@@ -71,7 +103,7 @@ const playGame = () => {
 
     console.log(`Your Score: ${playerScore}`);
     console.log(`Opponent Score:  ${cpuScore}`);
-
+    updateScores();
     if (playerScore === 5) {
       console.log('You win!');
       break;
@@ -84,14 +116,14 @@ const playGame = () => {
   const playAgain = confirm('Would you like to play again');
 
   if (playAgain) {
+    playerScore = 0;
+    cpuScore = 0;
+    updateScores();
     playGame();
   } else {
-    return console.log('Thank you for playing!');
+    console.log('Thank you for playing!');
   }
 };
 
-let startGame = confirm('Do you want to play?');
-
-if (startGame) {
-  playGame();
-}
+const playButton = document.getElementById('play-button');
+playButton.addEventListener('click', playGame);
