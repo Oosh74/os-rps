@@ -1,3 +1,49 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
-  background-color: orange;
+  margin: 0;
+  border: 1px solid red;
+}
+
+@font-face {
+  font-family: 'RuneScape UF';
+  src: local('RuneScape UF Regular'), local('RuneScape-UF'),
+    url('/assets/fonts/RuneScape-UF.woff') format('woff2'),
+    url('/assets/fonts/RuneScape-UF.woff') format('woff'),
+    url('/assets/fonts/RuneScape-UF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+
+body {
+  font-family: 'Runescape UF', sans-serif;
+}
+
+.content-container {
+  background-image: url('/assets/images/osrs-login-screen-1.webp');
+  width: 756px;
+  height: 503px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
