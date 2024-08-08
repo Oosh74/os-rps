@@ -35,6 +35,12 @@ body {
   font-family: 'Runescape UF', sans-serif;
 }
 
+ul,
+li,
+button {
+  all: unset;
+}
+
 .content-container {
   background-image: url('/assets/images/osrs-login-screen-1.webp');
   width: 756px;
@@ -46,4 +52,62 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+}
+
+.game-logic-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  flex: 0 1 auto;
+}
+
+.game-logic-container img {
+  flex: auto;
+  height: 300px;
+}
+
+.button-container {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  justify-content: center;
+  gap: 40px;
+}
+
+.attack-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background-color: #565752;
+  border: 4px solid #696051;
+  position: relative;
+  padding: 0 50px;
+  color: yellow;
+}
+
+.attack-button::before,
+.attack-button::after {
+  content: '';
+  right: 0.5em;
+  height: 0.5em;
+  left: 0.5em;
+  position: absolute;
+  background-color: inherit;
+  border-right: inherit;
+  border-left: inherit;
+}
+
+.attack-button::before {
+  bottom: 100%;
+  border-bottom: none;
+  border-top: inherit;
+}
+
+.attack-button::after {
+  top: 100%;
+  border-top: none;
+  border-bottom: inherit;
 }

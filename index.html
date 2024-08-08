@@ -12,22 +12,32 @@
       <div>
         <h1>OS-RPS.</h1>
       </div>
-      <div>
-        <p id="round"></p>
-        <p id="result"></p>
-        <h2 id="player-selection"></h2>
-        <h2 id="cpu-selection"></h2>
-        <p id="player-score"></p>
-        <p id="cpu-score"></p>
+      <div class="game-logic-container">
+        <div><img src="/assets/images/Vannaka (1).webp" /></div>
+        <div>
+          <p id="round"></p>
+          <p id="result"></p>
+          <h2 id="player-selection"></h2>
+          <h2 id="cpu-selection"></h2>
+          <p id="player-score"></p>
+          <p id="cpu-score"></p>
+        </div>
+        <div><img src="/assets/images/Goblin_(armed) (1).webp" /></div>
+      </div>
+      <div class="button-container">
+        <button class="attack-button" id="melee-button">
+          <img src="assets/images/Attack_icon_(detail).png" />Melee
+        </button>
+        <button class="attack-button" id="magic-button">
+          <img src="assets/images/Magic_icon_(detail).png" />Magic
+        </button>
+        <button class="attack-button" id="ranged-button">
+          <img src="assets/images/Ranged_icon_(detail).png" />Ranged
+        </button>
       </div>
       <div>
-        <ul>
-          <li><button id="melee-button">Melee</button></li>
-          <li><button id="magic-button">Magic</button></li>
-          <li><button id="ranged-button">Ranged</button></li>
-        </ul>
+        <button id="play-button">Start Game</button>
       </div>
-      <button id="play-button">Start Game</button>
     </section>
   </body>
 </html>
