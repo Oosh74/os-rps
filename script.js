@@ -1,12 +1,16 @@
 let playerScore = 0;
 let cpuScore = 0;
 let round = 1;
+let opponentHP = 100;
+let playerHp = 100;
 
 const playerScoreElement = document.getElementById('player-score');
 const cpuScoreElement = document.getElementById('cpu-score');
 const roundElement = document.getElementById('round');
 const playerSelectionElement = document.getElementById('player-selection');
 const cpuSelection = document.getElementById('cpu-selection');
+const opponenthealthBar = document.querySelector('.opponent-health-bar');
+const playerhealthBar = document.querySelector('.player-health-bar');
 
 playerScoreElement.textContent = `Player Score: ${playerScore}`;
 cpuScoreElement.textContent = `Player Score: ${playerScore}`;
@@ -81,6 +85,32 @@ const updateScores = () => {
   roundElement.textContent = `Round: ${round}`;
 };
 
+const updateHealth = (character) => {
+  if (character === 'Player') {
+    opponentHP -= 20;
+    opponenthealthBar.style.setProperty(
+      '--opponent-health-width',
+      opponentHP + '%'
+    );
+  } else if (character === 'Cpu') {
+    playerHp -= 20;
+    playerhealthBar.style.setProperty('--player-health-width', playerHp + '%');
+  } else if (character === 'Draw') {
+    return;
+  } else {
+    opponentHP = 100;
+    playerHp = 100;
+    opponenthealthBar.style.setProperty(
+      '--opponent-health-width',
+      opponentHP + '%'
+    );
+    playerhealthBar.style.setProperty(
+      '--player-health-width',
+      opponentHP + '%'
+    );
+  }
+};
+
 const playRound = async () => {
   let humanChoice = await getHumanChoice();
   let computerChoice = getComputerChoice();
@@ -102,6 +132,7 @@ const playGame = async () => {
     }
     round++;
 
+    updateHealth(result);
     updateScores();
 
     if (playerScore === 5) {
@@ -123,6 +154,7 @@ const playGame = async () => {
     round = 1;
     updateScores();
     playGame();
+    updateHealth();
   } else {
     console.log('Thank you for playing!');
   }

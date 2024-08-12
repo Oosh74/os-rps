@@ -55,7 +55,7 @@ button {
 
 .game-logic-container {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-around;
   width: 100%;
   flex: 0 1 auto;
@@ -63,7 +63,42 @@ button {
 
 .game-logic-container img {
   flex: auto;
-  height: 300px;
+  height: 200px;
+}
+
+.player-health-bar,
+.opponent-health-bar {
+  width: 100%;
+  background-color: #fe0101;
+  height: 20px;
+  border: 1px solid black;
+  position: relative;
+}
+
+.opponent-health-bar {
+  --opponent-health-width: 100%;
+}
+
+.player-health-bar {
+  --player-health-width: 100%;
+}
+
+.opponent-health-bar::after,
+.player-health-bar::after {
+  content: '';
+  height: 100%;
+  background-color: #1aff00;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.player-health-bar::after {
+  width: var(--player-health-width);
+}
+
+.opponent-health-bar::after {
+  width: var(--opponent-health-width);
 }
 
 .button-container {
