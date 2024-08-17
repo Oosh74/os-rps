@@ -9,7 +9,6 @@
 
 * {
   margin: 0;
-  border: 1px solid red;
 }
 
 @font-face {
@@ -242,6 +241,10 @@ button {
   width: 36px;
   height: 36px;
   margin-left: auto;
+}
+
+.music-button:hover {
+  cursor: pointer;
 }
 
 .game-details {

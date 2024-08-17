@@ -21,16 +21,16 @@ const rangedButton = document.getElementById('ranged-button');
 const meleeButton = document.getElementById('melee-button');
 const magicButton = document.getElementById('magic-button');
 
-const hitSplat = () => {
-  const container = document.querySelector('.character-container');
+const hitSplat = (character) => {
+  const container = document.querySelector(`.character-container.${character}`);
   container.classList.add('show-hit-splat');
   setTimeout(() => {
     container.classList.remove('show-hit-splat');
   }, 3000);
 };
 
-const defenseSplat = () => {
-  const container = document.querySelector('.character-container');
+const defenseSplat = (character) => {
+  const container = document.querySelector(`.character-container.${character}`);
   container.classList.add('show-defense-splat');
   setTimeout(() => {
     container.classList.remove('show-defense-splat');
@@ -115,14 +115,16 @@ const updateScores = () => {
 
 const updateHealth = (character) => {
   if (character === 'Player') {
-    hitSplat();
+    hitSplat('cpu');
+    defenseSplat('player');
     opponentHP -= 20;
     opponenthealthBar.style.setProperty(
       '--opponent-health-width',
       opponentHP + '%'
     );
   } else if (character === 'Cpu') {
-    hitSplat();
+    hitSplat('player');
+    defenseSplat('cpu');
     playerHp -= 20;
     playerhealthBar.style.setProperty('--player-health-width', playerHp + '%');
   } else if (character === 'Draw') {
