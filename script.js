@@ -132,6 +132,7 @@ const playRound = async () => {
 const playGame = async () => {
   resetGame();
   playButton.disabled = true;
+  playButton.className = 'inactive-btn';
 
   while (playerScore <= 5 && cpuScore <= 5) {
     let result = await playRound();
@@ -149,13 +150,14 @@ const playGame = async () => {
     if (playerScore === 5) {
       playerScore++;
       playButton.disabled = false;
+      playButton.className = 'play-btn';
       resultElement.textContent = `Game over! You win!`;
       playButton.textContent = 'Play Again';
-
       break;
     } else if (cpuScore === 5) {
       cpuScore++;
       playButton.disabled = false;
+      playButton.className = 'play-btn';
       resultElement.textContent = `Game over! You lose!`;
       playButton.textContent = 'Play Again';
       break;
