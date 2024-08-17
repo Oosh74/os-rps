@@ -100,6 +100,14 @@ button {
   opacity: 0;
 }
 
+.character-container.show-hit-splat::before {
+  opacity: 1;
+}
+
+.character-container.show-defense-splat::after {
+  opacity: 1;
+}
+
 .player-health-bar,
 .opponent-health-bar {
   width: 100%;
