@@ -19,3 +19,7 @@ OSRS Magic Icon: https://oldschool.runescape.wiki/index.php?curid=343802
 OSRS Attack Icon: https://oldschool.runescape.wiki/index.php?curid=343806
 
 OSRS Ranged Icon: https://oldschool.runescape.wiki/index.php?curid=343787
+
+OSRS Damage Hitsplat: https://oldschool.runescape.wiki/w/File:Damage_hitsplat.png
+
+OSRS Zero-Damage Hitsplat: https://oldschool.runescape.wiki/w/File:Zero_damage_hitsplat.png
