@@ -14,9 +14,9 @@
 @font-face {
   font-family: 'RuneScape UF';
   src: local('RuneScape UF Regular'), local('RuneScape-UF'),
-    url('/assets/fonts/RuneScape-UF.woff') format('woff2'),
-    url('/assets/fonts/RuneScape-UF.woff') format('woff'),
-    url('/assets/fonts/RuneScape-UF.ttf') format('truetype');
+    url('./assets/fonts/RuneScape-UF.woff') format('woff2'),
+    url('./assets/fonts/RuneScape-UF.woff') format('woff'),
+    url('./assets/fonts/RuneScape-UF.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -44,7 +44,7 @@ button {
 }
 
 .content-container {
-  background-image: url('/assets/images/osrs-login-screen-1.webp');
+  background-image: url('./assets/images/osrs-login-screen-1.webp');
   width: 756px;
   height: 503px;
   background-size: cover;
@@ -83,19 +83,19 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('/assets/images/Damage_hitsplat.webp');
+  background-image: url('./assets/images/Damage_hitsplat.webp');
   background-repeat: no-repeat;
 }
 
 .character-container::before {
   content: '1';
-  background-image: url('/assets/images/Damage_hitsplat.webp');
+  background-image: url('./assets/images/Damage_hitsplat.webp');
   opacity: 0;
 }
 
 .character-container::after {
   content: '0';
-  background-image: url('/assets/images/Zero_damage_hitsplat.webp');
+  background-image: url('./assets/images/Zero_damage_hitsplat.webp');
   opacity: 0;
 }
 
@@ -236,7 +236,7 @@ button {
 }
 
 .music-button {
-  background-image: url('/assets/images/osrs-music-icon\(2\).png');
+  background-image: url('./assets/images/osrs-music-icon\(2\).png');
   background-repeat: no-repeat;
   width: 36px;
   height: 36px;
